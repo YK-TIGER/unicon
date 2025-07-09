@@ -1,11 +1,14 @@
+const usedProblems = new Set();
+const maxProblemCount = 3;
+
 async function fetchText(url) {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`Failed to fetch ${url}`);
-  return await response.text();
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch ${url}`);
+  return await res.text();
 }
 
-// 파일 존재 여부 확인용 (텍스트 기준)
-async function quizExists(index) {
+// 문제 존재 여부 확인
+async function checkExists(index) {
   try {
     const res = await fetch(`quiz/${index}question.txt`);
     return res.ok;
@@ -14,35 +17,63 @@ async function quizExists(index) {
   }
 }
 
-async function loadRandomQuiz() {
-  const maxIndex = 100;
-  let available = [];
+// 실제 존재하는 문제 리스트 수집
+async function getAvailableProblems() {
+  const checks = [];
 
-  // 실제 존재하는 퀴즈만 수집
-  for (let i = 1; i <= maxIndex; i++) {
-    const exists = await quizExists(i);
-    if (exists) available.push(i);
+  for (let i = 1; i <= maxProblemCount; i++) {
+    checks.push(checkExists(i).then(ok => (ok ? i : null)));
   }
 
-  if (available.length === 0) {
-    document.getElementById('quiz-question').textContent = 'No quiz available';
+  const results = await Promise.all(checks);
+  return results.filter(n => n !== null);
+}
+
+let availableProblems = [];
+
+async function loadRandomQuiz() {
+  if (availableProblems.length === 0) {
+    availableProblems = await getAvailableProblems();
+  }
+
+  // 아직 사용되지 않은 문제 필터링
+  const remaining = availableProblems.filter(n => !usedProblems.has(n));
+  if (remaining.length === 0) {
+    document.getElementById('quiz-question').textContent = '모든 문제를 다 풀었습니다!';
+    document.getElementById('quiz-image').style.display = 'none';
+    document.getElementById('show-answer-btn').style.display = 'none';
+    document.getElementById('next-question-btn').style.display = 'none';
     return;
   }
 
-  // 랜덤 선택
-  const randIndex = available[Math.floor(Math.random() * available.length)];
-  const question = await fetchText(`quiz/${randIndex}question.txt`);
-  const answer = await fetchText(`quiz/${randIndex}answer.txt`);
+  const rand = remaining[Math.floor(Math.random() * remaining.length)];
+  usedProblems.add(rand);
 
+  const question = await fetchText(`quiz/${rand}question.txt`);
+  const answer = await fetchText(`quiz/${rand}answer.txt`);
+
+  // 요소들 갱신
+  document.getElementById('quiz-image').src = `quiz/${rand}.png`;
   document.getElementById('quiz-question').textContent = question;
   document.getElementById('quiz-answer').textContent = answer;
-  document.getElementById('quiz-image').src = `quiz/${randIndex}.png`;
+
+  // 상태 초기화
+  document.getElementById('quiz-image').style.display = 'block';
+  document.getElementById('quiz-question').style.display = 'block';
+  document.getElementById('quiz-answer').style.display = 'none';
+  document.getElementById('show-answer-btn').style.display = 'inline-block';
 }
 
-// DOM 준비 후 실행
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('show-answer-btn').addEventListener('click', () => {
+    document.getElementById('quiz-image').style.display = 'none';
+    document.getElementById('quiz-question').style.display = 'none';
     document.getElementById('quiz-answer').style.display = 'block';
+    document.getElementById('show-answer-btn').style.display = 'none';
+  });
+
+  document.getElementById('next-question-btn').addEventListener('click', () => {
+    loadRandomQuiz();
   });
 
   loadRandomQuiz();

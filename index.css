@@ -60,7 +60,7 @@ body {
 
 /* 정답 텍스트 */
 #quiz-answer {
-  font-size: 22px;
+  font-size: 100px;
   color: #333;
   display: none;
   white-space: pre-line;
