@@ -1,0 +1,67 @@
+/* 전체 배경 및 폰트 설정 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f6fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 퀴즈 박스 스타일 */
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  max-width: 800px;
+  width: 90%;
+}
+
+/* 문제 이미지 */
+#quiz-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+/* 질문 텍스트 */
+#quiz-question {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* 정답 보기 버튼 */
+#show-answer-btn {
+  font-size: 20px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 20px;
+}
+
+#show-answer-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 정답 텍스트 */
+#quiz-answer {
+  font-size: 22px;
+  color: #333;
+  display: none;
+  white-space: pre-line;
+}
