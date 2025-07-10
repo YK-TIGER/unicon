@@ -1,3 +1,4 @@
+/* 전체 배경 및 폰트 설정 */
 body {
   margin: 0;
   padding: 0;
@@ -7,8 +8,22 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  flex-direction: column;
+  padding-top: 80px; /* 제목 공간 확보 */
 }
 
+/* 화면 중앙 상단 타이틀 */
+.quiz-title {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 퀴즈 카드 전체 박스 */
 .quiz-container {
   display: flex;
   flex-direction: column;
@@ -22,6 +37,7 @@ body {
   width: 90%;
 }
 
+/* 문제 이미지 스타일 */
 #quiz-image {
   width: 100%;
   max-height: 400px;
@@ -31,12 +47,14 @@ body {
   border-radius: 10px;
 }
 
+/* 문제 텍스트 */
 #quiz-question {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 30px;
 }
 
+/* 정답 텍스트 (초기에는 숨김) */
 #quiz-answer {
   font-size: 22px;
   color: #333;
@@ -45,16 +63,25 @@ body {
   margin-bottom: 20px;
 }
 
+/* 정답 보기 & 다음 문제 버튼을 한 줄로 */
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* 모든 버튼 공통 스타일 */
 button {
   font-size: 18px;
   padding: 12px 24px;
-  margin: 8px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
+/* 정답 보기, 다음 문제 버튼 색상 */
 #show-answer-btn,
 #next-question-btn {
   background-color: #007bff;
@@ -66,15 +93,16 @@ button {
   background-color: #0056b3;
 }
 
+/* 처음부터 다시 버튼 스타일 */
 #reset-btn {
   background-color: #6c757d;
   color: white;
+  margin-top: 10px;
 }
 
 #reset-btn:hover {
   background-color: #495057;
 }
-
 
 
 #next-question-btn {
