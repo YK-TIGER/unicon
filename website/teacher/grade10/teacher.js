@@ -54,7 +54,7 @@ async function loadRandomQuiz() {
   document.getElementById('quiz-question').style.display = 'block';
   document.getElementById('quiz-answer').style.display = 'none';
   document.getElementById('show-answer-btn').style.display = 'inline-block';
-  document.getElementById('next-question-btn').style.display = 'inline-block';
+  document.getElementById('next-question-btn').style.display = 'none'; // 수정된 부분
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -63,16 +63,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('quiz-question').style.display = 'none';
     document.getElementById('quiz-answer').style.display = 'block';
     document.getElementById('show-answer-btn').style.display = 'none';
+    document.getElementById('next-question-btn').style.display = 'inline-block'; // 수정된 부분
   });
 
   document.getElementById('next-question-btn').addEventListener('click', () => {
     loadRandomQuiz();
   });
 
-  document.getElementById('reset-btn').addEventListener('click', () => {
-    usedProblems.clear();
-    loadRandomQuiz();
-  });
+  // document.getElementById('reset-btn').addEventListener('click', () => {
+  //   usedProblems.clear();
+  //   loadRandomQuiz();
+  // });
 
   loadRandomQuiz();
 });

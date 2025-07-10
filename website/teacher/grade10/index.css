@@ -9,7 +9,7 @@ body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  padding-top: 80px; /* 제목 공간 확보 */
+  padding-top:150px; /* 제목 공간 확보 */
 }
 
 /* 화면 중앙 상단 타이틀 */
@@ -56,7 +56,7 @@ body {
 
 /* 정답 텍스트 (초기에는 숨김) */
 #quiz-answer {
-  font-size: 22px;
+  font-size: 40px;
   color: #333;
   white-space: pre-line;
   display: none;
@@ -67,14 +67,14 @@ body {
 .button-row {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 100px;
   margin-bottom: 20px;
 }
 
 /* 모든 버튼 공통 스타일 */
 button {
   font-size: 18px;
-  padding: 12px 24px;
+  padding: 16px 24px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -102,23 +102,4 @@ button {
 
 #reset-btn:hover {
   background-color: #495057;
-}
-
-
-#next-question-btn {
-  font-size: 20px;
-  padding: 15px 30px;
-  border: none;
-  border-radius: 8px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-bottom: 20px;
-  
-}
-
-
-#next-question-btn:hover {
-  background-color: #0056b3;
 }
