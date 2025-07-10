@@ -1,0 +1,48 @@
+/* 전체 화면 중앙 정렬 */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+}
+
+/* 중앙 박스 스타일 */
+.start-container {
+  text-align: center;
+  padding: 40px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 제목 */
+.start-container h1 {
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+/* 버튼 그룹 */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 버튼 스타일 */
+button {
+  padding: 20px 40px;
+  font-size: 24px;
+  border: none;
+  border-radius: 12px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
