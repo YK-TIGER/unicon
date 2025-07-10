@@ -66,11 +66,20 @@ body {
 }
 
 /* 보기 텍스트 */
-#quiz-choices li {
-  font-size: 30px;
-  line-height: 1.6;
+#quiz-choices {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
+#quiz-choices li {
+  font-size: 30px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
 /* 정답 텍스트 (초기에는 숨김) */
 #quiz-answer {
   font-size: 40px;
