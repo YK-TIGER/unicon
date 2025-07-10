@@ -13,8 +13,18 @@ body {
 }
 
 /* 화면 중앙 상단 타이틀 */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 가운데 정렬 */
+  gap: 10px; /* 타이틀과 이미지 사이 간격 */
+  margin-bottom: 20px;
+}
+
 .quiz-title {
-  position: absolute;
+  font-size: 50px;
+  margin: 0;
   top: 30px;
   width: 100%;
   text-align: center;
@@ -22,6 +32,13 @@ body {
   font-weight: bold;
   color: #333;
 }
+
+
+#header-image {
+  width: 100px;
+  height: auto;
+}
+
 
 /* 퀴즈 카드 전체 박스 */
 .quiz-container {

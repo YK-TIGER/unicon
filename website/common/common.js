@@ -28,8 +28,8 @@ async function getAvailableProblems() {
 
 // 배열 섞기 (Fisher-Yates shuffle)
 function shuffleArray(array) {
-  for (let i = array.length -1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i +1));
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
@@ -44,8 +44,10 @@ async function loadRandomQuiz() {
   if (remaining.length === 0) {
     document.getElementById('quiz-question').textContent = '모든 문제를 다 풀었습니다!';
     document.getElementById('quiz-choices').innerHTML = '';
+    document.getElementById('quiz-answer').style.display = 'none';
     document.getElementById('show-answer-btn').style.display = 'none';
     document.getElementById('next-question-btn').style.display = 'none';
+    document.getElementById('reset-btn').style.display = 'inline-block'; // 다시 시작 버튼 표시
     return;
   }
 
@@ -60,12 +62,10 @@ async function loadRandomQuiz() {
   // 보기 섞기
   choices = shuffleArray(choices);
 
-  // 알파벳 리스트 (a,b,c,d)
+  // 알파벳 리스트 (a, b, c, d)
   const alphabets = ['a', 'b', 'c', 'd'];
 
-  // 정답의 원래 텍스트가 answer에 있다고 가정하고,
-  // 섞은 보기 중에서 정답 텍스트와 일치하는 index 찾기
-  // (정답과 보기 텍스트가 정확히 일치해야 함)
+  // 정답 인덱스 찾기
   const answerIndex = choices.findIndex(c => c.trim() === answer.trim());
 
   // 문제 텍스트 출력
@@ -73,36 +73,44 @@ async function loadRandomQuiz() {
   quizQuestion.textContent = question;
   quizQuestion.style.display = 'block';
 
-  // 보기 출력 (li에 'a. 텍스트' 형태로)
+  // 보기 출력
   const choicesContainer = document.getElementById('quiz-choices');
   choicesContainer.innerHTML = '';
   choices.forEach((choice, i) => {
     const li = document.createElement('li');
     li.textContent = `${alphabets[i]}. ${choice}`;
+    li.style.fontSize = '1.2em';
     choicesContainer.appendChild(li);
   });
 
-  // 정답 텍스트를 'b. apple' 같이 알파벳과 함께 표시
+  // 정답 출력 준비 (숨김)
   const quizAnswer = document.getElementById('quiz-answer');
   if (answerIndex !== -1) {
     quizAnswer.textContent = `${alphabets[answerIndex]}. ${answer}`;
   } else {
-    // 만약 일치하는 보기 없으면 그냥 answer만 표시
     quizAnswer.textContent = answer;
   }
   quizAnswer.style.display = 'none';
 
-  // 버튼 표시
+  // 버튼 조정
   document.getElementById('show-answer-btn').style.display = 'inline-block';
-  document.getElementById('next-question-btn').style.display = 'inline-block';
+  document.getElementById('next-question-btn').style.display = 'none'; // ✅ 다음 문제 버튼 숨기기
+  document.getElementById('reset-btn').style.display = 'none'; // 다시 시작 버튼 숨기기
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // 초기 버튼 상태
+  document.getElementById('reset-btn').style.display = 'none';
+  document.getElementById('next-question-btn').style.display = 'none'; // ✅ 처음부터 숨기기
+
   document.getElementById('show-answer-btn').addEventListener('click', () => {
     document.getElementById('quiz-question').style.display = 'none';
     document.getElementById('quiz-choices').innerHTML = '';
     document.getElementById('quiz-answer').style.display = 'block';
     document.getElementById('show-answer-btn').style.display = 'none';
+
+    // ✅ 정답 본 이후에만 다음 문제 버튼 보이기
+    document.getElementById('next-question-btn').style.display = 'inline-block';
   });
 
   document.getElementById('next-question-btn').addEventListener('click', () => {
@@ -111,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById('reset-btn').addEventListener('click', () => {
     usedProblems.clear();
+    document.getElementById('reset-btn').style.display = 'none';
     loadRandomQuiz();
   });
 

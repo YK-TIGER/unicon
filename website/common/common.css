@@ -30,19 +30,32 @@ body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  padding-top: 80px; /* 제목 공간 확보 */
+  padding-top: 0px; /* 제목 공간 확보 */
 }
 
 /* 화면 중앙 상단 타이틀 */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 가운데 정렬 */
+  gap: 10px; /* 타이틀과 이미지 사이 간격 */
+  margin-bottom: 20px;
+}
+
+
 .quiz-title {
-  position: absolute;
-  top: 30px;
-  width: 100%;
-  text-align: center;
-  font-size: 32px;
+  font-size: 50px;
+  margin: 0;
   font-weight: bold;
   color: #333;
 }
+
+#header-image {
+  width: 100px;
+  height: auto;
+}
+
 
 /* 퀴즈 카드 전체 박스 */
 .quiz-container {
@@ -67,9 +80,10 @@ body {
 
 /* 보기 텍스트 */
 #quiz-choices {
+  font-size: 25px;
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin-top: 10px;
 }
 
 #quiz-choices li {
