@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>선생님 퀴즈</title>
+  <link rel="stylesheet" href="grade10.css" />
+  <script src="teacher10.js" defer></script>
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+  <h1 class="quiz-title">선생님 퀴즈</h1>
+  <div class="quiz-container">
+    <img id="quiz-image" src="" alt="문제 이미지" />
+    <div id="quiz-question">문제가 로딩 중입니다...</div>
+
+    <!-- 정답 보기 버튼만 여기 유지 -->
+    <div class="button-row">
+      <button id="show-answer-btn">정답 보기</button>
+    </div>
+
+    <!-- 정답 출력 -->
+    <div id="quiz-answer"></div>
+
+    <!-- 다음 문제 버튼은 정답 아래로 위치 -->
+    <div class="next-button-row">
+      <button id="next-question-btn">다음 문제</button>
+    </div>
+    <button id="reset-btn" style="display: none;">처음부터 다시</button>
+
+  </div>
+</body>
+</html>

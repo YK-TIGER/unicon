@@ -38,7 +38,7 @@ async function loadRandomQuiz() {
     document.getElementById('quiz-answer').style.display = 'none';
     document.getElementById('show-answer-btn').style.display = 'none';
     document.getElementById('next-question-btn').style.display = 'none';
-    document.getElementById('reset-btn').style.display = 'inline-block'; // ✅ 표시
+    document.getElementById('reset-btn').style.display = 'inline-block';
     return;
   }
 
@@ -57,7 +57,7 @@ async function loadRandomQuiz() {
   document.getElementById('quiz-answer').style.display = 'none';
   document.getElementById('show-answer-btn').style.display = 'inline-block';
   document.getElementById('next-question-btn').style.display = 'none';
-  document.getElementById('reset-btn').style.display = 'none'; // ✅ 퀴즈 중에는 숨김
+  document.getElementById('reset-btn').style.display = 'none';
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,0 +1,98 @@
+/* 전체 배경 및 폰트 설정 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f6fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  padding-top:150px; /* 제목 공간 확보 */
+}
+
+/* 화면 중앙 상단 타이틀 */
+.quiz-title {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 퀴즈 카드 전체 박스 */
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 90%;
+}
+
+/* 문제 이미지 스타일 */
+#quiz-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+/* 문제 텍스트 */
+#quiz-question {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* 정답 텍스트 (초기에는 숨김) */
+#quiz-answer {
+  font-size: 40px;
+  color: #333;
+  white-space: pre-line;
+  display: none;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* 모든 버튼 공통 스타일 */
+button {
+  font-size: 18px;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* 정답 보기, 다음 문제 버튼 색상 */
+#show-answer-btn,
+#next-question-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+#show-answer-btn:hover,
+#next-question-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 처음부터 다시 버튼 스타일 */
+#reset-btn {
+  background-color: #6c757d;
+  color: white;
+  margin-top: 10px;
+}
+
+#reset-btn:hover {
+  background-color: #495057;
+}
